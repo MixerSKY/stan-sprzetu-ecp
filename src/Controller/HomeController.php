@@ -14,7 +14,7 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home', methods: ['GET', 'POST'])]
     public function index(Request $request, ItemRepository $itemRepository, EntityManagerInterface $entityManager): Response
     {
-        // 1. ZAPISYWANIE
+        //ZAPISYWANIE
         if ($request->isMethod('POST')) {
             
             $itemId = $request->request->get('item_id');
@@ -23,7 +23,7 @@ class HomeController extends AbstractController
             $midLevel = $request->request->get('midLevel');
             $okLevel = $request->request->get('okLevel');
 
-            // ZAWÓR BEZPIECZEŃSTWA: Wykonaj zapis TYLKO jeśli przysłano nam jakieś ID!
+            // Wykonaj zapis TYLKO jeśli przysłano nam jakieś ID!
             if ($itemId) {
                 $item = $itemRepository->find($itemId);
 
@@ -40,7 +40,7 @@ class HomeController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
 
-        // 2. WYŚWIETLANIE (Lecimy jak do tej pory)
+        // WYŚWIETLANIE
         $allItems = $itemRepository->findAll();
 
         $categories = [];
